@@ -10,10 +10,10 @@ Requisição
 ```json
 {
   "username": "cadu",
-  "email": "cadu0970@gmail.com",
-  "avatar": "basic_man",
+  "email": "cadu@gmail.com",
+  "avatar": "basic_man" | "basic_woman",
   "password": "123456",
-  "accentColor": "#425451"
+  "accentColor": "#9d12f7"
 }
 ```
 
