@@ -11,19 +11,19 @@ Requisição
 {
   "username": "cadu",
   "email": "cadu@gmail.com",
-  "avatar": "basic_man" | "basic_woman",
+  "avatar": "basic_man",
   "password": "123456",
   "accentColor": "#9d12f7"
 }
 ```
 
-| Parâmetro   |  Tipo  |               Descrição              |
-|-------------|--------|--------------------------------------|
-| username    | string | O nome de usuário do novo usuário    |
-| email       | string | O endereço de e-mail do novo usuário |
-| avatar      | string | O nome do avatar do novo usuário     |
-| password    | string | A senha do novo usuário              |
-| accentColor | string | A cor de destaque do novo usuário    |
+| Parâmetro   |  Tipo  |               Descrição                                          |
+|-------------|--------|------------------------------------------------------------------|
+| username    | string | O nome de usuário do novo usuário                                |
+| email       | string | O endereço de e-mail do novo usuário                             |
+| avatar      | string | O Avatar exist dois tipos estaticos `basic_man` or `basic_woman` |
+| password    | string | A senha do novo usuário                                          |
+| accentColor | string | A cor de destaque do novo usuário                                |
 
 ## Resposta
 A resposta da solicitação inclui um token de autenticação que pode ser usado para fazer login no sistema.
