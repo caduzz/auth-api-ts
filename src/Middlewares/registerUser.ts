@@ -27,9 +27,9 @@ export default async function register(req: Request, res: Response, next: NextFu
     })
 
     const { error: errSechemJoi } = schema.validate(body)
-    if(errSechemJoi)return res.status(400).json({message: errSechemJoi.message})
+    if(errSechemJoi)return res.status(400).json({sucess: false, message: errSechemJoi.message})
     const errValidate = await validate.register(body.email)
-    if(errValidate)return res.status(400).json({message: errValidate.msg})
+    if(errValidate)return res.status(400).json({sucess: false, message: errValidate.msg})
 
   next();
 }

@@ -16,7 +16,7 @@ export default async function login(req: Request, res: Response, next: NextFunct
     })
 
     const { error: errSechemJoi } = schema.validate(body)
-    if(errSechemJoi)return res.status(400).json({message: errSechemJoi.message})
+    if(errSechemJoi)return res.status(400).json({sucess: false, message: errSechemJoi.message})
 
     next();
 }

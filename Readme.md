@@ -5,7 +5,7 @@ Esta API permite que os usuários se registrem e façam login em um sistema, for
 A rota de registro permite que um usuário crie uma conta em um sistema. O corpo da solicitação deve incluir os seguintes parâmetros:
 
 Requisição
-POST /user/register
+`POST /user/register`
 
 ```json
 {
@@ -30,6 +30,7 @@ A resposta da solicitação inclui um token de autenticação que pode ser usado
 
 ```json
 {
+  "sucess": true,
   "message": "Usuário registrado com sucesso",
   "token": "TOKEN_DE_AUTENTICAÇÃO"
 }
@@ -38,7 +39,7 @@ A resposta da solicitação inclui um token de autenticação que pode ser usado
 A rota de login permite que um usuário faça login no sistema. O corpo da solicitação deve incluir os seguintes parâmetros:
 
 ## Requisição
-POST /user/login
+`POST /user/login`
 
 ```json
 {
@@ -57,6 +58,7 @@ A resposta da solicitação inclui um token de autenticação que pode ser usado
 
 ```json
 {
+  "sucess": true,
   "message": "Login realizado com sucesso",
   "token": "TOKEN_DE_AUTENTICAÇÃO"
 }
@@ -65,6 +67,7 @@ Caso haja algum erro durante a solicitação, a resposta conterá uma mensagem d
 
 ```json
 {
+  "sucess": false,
   "message": "Mensagem de erro"
 }
 ```

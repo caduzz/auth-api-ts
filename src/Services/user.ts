@@ -28,7 +28,10 @@ export default class UserService {
                 username
             }
         })
-        return {msg: 'sucess create user'}
+
+        const token = token_create()
+
+        return {sucess: true, msg: 'sucess create user', token}
     }
     
     login = async ({email, password}:IUserLogin) : Promise<IUserPromise> => {
@@ -36,12 +39,12 @@ export default class UserService {
             where: { email }
         })
         
-        if(!user) return {msg: 'Email not Found'}
+        if(!user) return {sucess: false, msg: 'Email not Found'}
 
-        if(await encrypt_validate(password, user.password)) return {msg: 'Password Invalid'}
+        if(await encrypt_validate(password, user.password)) return {sucess: false, msg: 'Password Invalid'}
 
         const token = token_create()
 
-        return {msg: 'Sucess Login', token}
+        return {sucess: false, msg: 'Sucess Login', token}
     }
 }

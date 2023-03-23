@@ -24,5 +24,6 @@ export interface IUserLogin {
 
 export interface IUserPromise{
     msg: string
+    sucess: boolean
     token?: string
 }
