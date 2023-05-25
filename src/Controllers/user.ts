@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IUser, IUserLogin, IUserRegister } from "../@types/user";
+import { IUser, IUserLogin, IUserPayload, IUserRegister } from "../@types/user";
 import UserService from "../Services/user";
 
 export default class UserController {
@@ -11,14 +11,15 @@ export default class UserController {
 
     createUser = async (req: Request, res: Response) => {
         try {
-            const { accentColor, email, avatar, password, username }:IUserRegister = req.body
-
+            const { accentColor, email, avatar, password, username, permissions }:IUserRegister = req.body
+            
             const msg = await this.service.create({
                 accentColor,
                 avatar,
                 email,
                 password,
-                username
+                username,
+                permissions
             })
     
             res.json(msg)
@@ -35,6 +36,18 @@ export default class UserController {
                 email, 
                 password
             })
+
+            res.json(msg)
+        } catch (error) {
+            console.log(error)        
+        }
+    }
+
+    getUser = async (req: Request, res: Response) => {
+        try {
+            const { id } = req.body.user as IUserPayload
+
+            const msg = await this.service.get(id)
 
             res.json(msg)
         } catch (error) {

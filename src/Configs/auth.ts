@@ -1,3 +1,3 @@
-export const auth = {
+export const config = {
     "secret": process.env.SECRET,
 }

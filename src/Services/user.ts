@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { IUserRegister, IUserPromise, IUserLogin } from "../@types/user";
+import { IUserRegister, IUserPromise, IUserLogin, IUser } from "../@types/user";
 
 import crypt from "./Utils/crypt";
 import token from "./Utils/token";
@@ -14,22 +14,37 @@ export default class UserService {
         this.prisma = new PrismaClient()
     }
 
-    create = async ({accentColor, avatar, email, password, username}: IUserRegister): Promise<IUserPromise> => {
+    get = async (id: string) => {
+        const user = await this.prisma.user.findUnique({where: {id}, select: {
+            id: true,
+            email: true,
+            avatar: true,
+            accentColor: true,
+            username: true
+        }})
+
+        return {sucess: true, msg: 'sucess create user', user}
+    }
+
+    create = async ({accentColor, avatar, email, password, username, permissions}: IUserRegister): Promise<IUserPromise> => {
         const image = avatar === 'basic_man' ? 'profile_basic_man.jpg' : 'profile_basic_woman.jpg'
         
         password = await encrypt(password);
 
-        await this.prisma.user.create({
+        const user = await this.prisma.user.create({
             data: {
                 accentColor,
                 avatar: image,
                 email,
                 password,
-                username
+                username,
+                permissions
             }
         })
 
-        const token = token_create()
+        console.log(user.id)
+
+        const token = token_create({ id: user.id })
 
         return {sucess: true, msg: 'sucess create user', token}
     }
@@ -43,7 +58,7 @@ export default class UserService {
 
         if(await encrypt_validate(password, user.password)) return {sucess: false, msg: 'Password Invalid'}
 
-        const token = token_create()
+        const token = token_create({ id: user.id })
 
         return {sucess: false, msg: 'Sucess Login', token}
     }

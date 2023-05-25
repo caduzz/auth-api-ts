@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken';
 
-import { auth } from '../../Configs/auth';
+import {config} from '../../Configs/auth';
 
 export default class token {
     token_create = (params = {}) : string | undefined => {
-        if(auth.secret){
-            return jwt.sign(params, auth.secret, {
+        if(config.secret){
+            return jwt.sign(params, config.secret, {
                 expiresIn: 864000
             });
         }
