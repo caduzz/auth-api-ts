@@ -93,7 +93,6 @@ A resposta da solicitação inclui as informações do usaurio
 
 ```json
 {
-  {
     "sucess": true,
     "msg": "sucess create user",
     "user": {
@@ -103,7 +102,6 @@ A resposta da solicitação inclui as informações do usaurio
       "accentColor": "#425451",
       "username": "user"
     }
-  }
 }
 ```
 Caso haja algum erro durante a solicitação, a resposta conterá uma mensagem de erro.
