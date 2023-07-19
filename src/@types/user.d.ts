@@ -1,7 +1,21 @@
+
+interface file {
+    fieldname: string,
+    originalname: string,
+    encoding: string,
+    mimetype: string,
+    destination: string,
+    filename: string,
+    path: string,
+    size: string,
+} 
+
+
 export interface IUser {
     id?: string
-    email: string 
+    email?: string 
     username: string
+    name: string
     password?: string
     avatar: string
     accentColor: string
@@ -12,14 +26,13 @@ export interface IUserPayload {
     id: string
 }
 
-type TypeAvatar = 'basic_man' | 'basic_woman'
-
 export interface IUserRegister {
     id?: string
     email: string 
     username: string
+    name: string
     password: string
-    avatar: TypeAvatar
+    avatar: Express.Multer.File
     accentColor: string
     permissions?: UserPermitions
 }
@@ -32,6 +45,7 @@ export interface IUserLogin {
 export interface IUserPromise {
     msg: string
     sucess: boolean
+    status: number
     token?: string
     user?: IUser
 }

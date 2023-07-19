@@ -72,7 +72,6 @@ Caso haja algum erro durante a solicitação, a resposta conterá uma mensagem d
 }
 ```
 
-
 ## Requisição
 `POST /user/infos`
 
@@ -159,9 +158,9 @@ A rota de listagem de posts permite que um usuário autenticado obtenha uma list
 
 `GET /post/list`
 
-| Parâmetro   |  Tipo  |               Descrição              |
-|-------------|--------|--------------------------------------|
-| headers	    | object | Cabeçalho da solicitação             |
+| Parâmetro   |    Tipo     |               Descrição              |
+|-------------|-------------|--------------------------------------|
+| headers	    | Barer Token | Cabeçalho da solicitação             |
 
 ## Resposta
 

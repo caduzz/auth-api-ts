@@ -11,18 +11,26 @@ export default class UserController {
 
     createUser = async (req: Request, res: Response) => {
         try {
-            const { accentColor, email, avatar, password, username, permissions }:IUserRegister = req.body
-            
-            const msg = await this.service.create({
-                accentColor,
-                avatar,
-                email,
-                password,
-                username,
-                permissions
-            })
-    
-            res.json(msg)
+            const { accentColor, email, password, username, name }:IUserRegister = req.body
+            const file = req.file
+
+            if(file !== undefined){
+                const avatar = file
+
+                const msg = await this.service.create({
+                    accentColor,
+                    avatar,
+                    name,
+                    email,
+                    password,
+                    username,
+                    permissions: 1
+                })
+        
+                res.status(msg.status).json(msg)
+            }else {
+                res.status(400).json({msg: 'avatar invalido'})
+            }
         } catch (error) {
             console.log(error)        
         }
@@ -31,13 +39,13 @@ export default class UserController {
     loginUser = async (req: Request, res: Response) => {
         try {
             const { email, password } : IUserLogin = req.body
-
+            
             const msg = await this.service.login({
                 email, 
                 password
             })
 
-            res.json(msg)
+            res.status(msg.status).json(msg)
         } catch (error) {
             console.log(error)        
         }
@@ -49,9 +57,16 @@ export default class UserController {
 
             const msg = await this.service.get(id)
 
-            res.json(msg)
+            res.status(msg.status).json(msg)
         } catch (error) {
             console.log(error)        
         }
+    }
+
+    getUserName = async (req: Request, res: Response) => {
+        const { id } = req.body.user as IUserPayload
+        const { username } = req.params
+        const msg = await this.service.getUserName(username, id)
+        res.status(msg.status).json(msg)
     }
 }
