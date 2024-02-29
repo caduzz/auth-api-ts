@@ -35,6 +35,8 @@ model Posts {
   updated_at DateTime @default(now())
   user       User?    @relation(fields: [userId], references: [id])
   userId     String?
+
+  parentId String?
 }
 
 model Follows {
